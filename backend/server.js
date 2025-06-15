@@ -39,6 +39,7 @@ app.use("/api/ai/generate-explanation", protect, generateConceptExplanation);
 
 // Health check endpoint for uptime monitoring
 app.get("/ping", (req, res) => {
+  console.log("🟢 Ping received at:", new Date().toISOString());
   res.status(200).send("pong");
 });
 
