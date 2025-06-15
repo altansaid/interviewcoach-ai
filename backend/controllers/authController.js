@@ -130,7 +130,10 @@ const forgotPassword = async (req, res) => {
       return res.status(404).json({ message: "No user found with this email" });
 
     const resetToken = crypto.randomBytes(32).toString("hex");
-    const hashedToken = crypto.createHash("sha256").update(resetToken).digest("hex");
+    const hashedToken = crypto
+      .createHash("sha256")
+      .update(resetToken)
+      .digest("hex");
 
     user.resetPasswordToken = hashedToken;
     user.resetPasswordExpire = Date.now() + 15 * 60 * 1000; // 15 dk
@@ -138,10 +141,35 @@ const forgotPassword = async (req, res) => {
 
     const resetUrl = `${process.env.CLIENT_URL}/reset-password/${resetToken}`;
     const html = `
-      <p>You requested a password reset.</p>
-      <p>Click the link below to reset your password (valid for 15 minutes):</p>
-      <a href="${resetUrl}" target="_blank">${resetUrl}</a>
-    `;
+  <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; padding: 20px; background-color: #f9f9f9; border-radius: 8px;">
+    <h2 style="color: #333;">🔐 Password Reset Request</h2>
+    
+    <p style="font-size: 16px; color: #555;">
+      Hi there,
+    </p>
+
+    <p style="font-size: 16px; color: #555;">
+      We received a request to reset your password for your <strong>InterviewCoach AI</strong> account.
+      If you made this request, click the button below to reset your password. This link is valid for <strong>15 minutes</strong>.
+    </p>
+
+    <div style="text-align: center; margin: 30px 0;">
+      <a href="${resetUrl}" style="background-color: #007BFF; color: white; padding: 12px 24px; text-decoration: none; border-radius: 5px; font-weight: bold;" target="_blank">
+        Reset My Password
+      </a>
+    </div>
+
+    <p style="font-size: 14px; color: #999;">
+      If you did not request a password reset, please ignore this email. Your account will remain secure.
+    </p>
+
+    <hr style="margin: 40px 0; border: none; border-top: 1px solid #eee;" />
+
+    <p style="font-size: 12px; color: #bbb;">
+      &copy; ${new Date().getFullYear()} InterviewCoach AI. All rights reserved.
+    </p>
+  </div>
+`;
 
     await sendEmail({
       to: user.email,
@@ -151,7 +179,9 @@ const forgotPassword = async (req, res) => {
 
     res.status(200).json({ message: "Reset link sent to your email." });
   } catch (err) {
-    res.status(500).json({ message: "Failed to send reset link", error: err.message });
+    res
+      .status(500)
+      .json({ message: "Failed to send reset link", error: err.message });
   }
 };
 
@@ -183,7 +213,9 @@ const resetPassword = async (req, res) => {
 
     res.status(200).json({ message: "Password has been reset successfully." });
   } catch (err) {
-    res.status(500).json({ message: "Failed to reset password", error: err.message });
+    res
+      .status(500)
+      .json({ message: "Failed to reset password", error: err.message });
   }
 };
 
