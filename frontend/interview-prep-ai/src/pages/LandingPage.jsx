@@ -56,7 +56,7 @@ const LandingPage = () => {
                 WebkitTextFillColor: "transparent",
               }}
             >
-              Interview Coach
+              Interview Coach AI
             </div>
             {user ? (
               <ProfileInfoCard />
