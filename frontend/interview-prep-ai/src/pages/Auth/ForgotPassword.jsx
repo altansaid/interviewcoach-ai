@@ -38,13 +38,13 @@ const ForgotPassword = ({ setCurrentPage }) => {
   };
 
   return (
-    <div className="w-[90vw] md:w-[33vw] p-7 flex flex-col justify-center">
+    <div className="w-[90vw] md:w-[33vw] p-7 flex flex-col justify-center bg-[#EDEBFA] rounded-xl border border-purple-300">
       <h3 className="text-lg font-semibold text-black">Reset Your Password</h3>
-      <p className="text-xs text-slate-700 mt-[5px] mb-6">
+      <p className="text-xs text-gray-700 mt-[5px] mb-6">
         Enter your email and we’ll send you a reset link.
       </p>
 
-      <form onSubmit={handleForgotPassword}>
+      <form onSubmit={handleForgotPassword} className="grid gap-3">
         <Input
           value={email}
           onChange={({ target }) => setEmail(target.value)}
@@ -53,17 +53,21 @@ const ForgotPassword = ({ setCurrentPage }) => {
           type="email"
         />
 
-        {error && <p className="text-red-500 text-xs mt-2">{error}</p>}
-        {message && <p className="text-green-600 text-xs mt-2">{message}</p>}
+        {error && <p className="text-red-500 text-xs mt-1">{error}</p>}
+        {message && <p className="text-green-600 text-xs mt-1">{message}</p>}
 
-        <button type="submit" className="btn-primary mt-4" disabled={loading}>
+        <button
+          type="submit"
+          className="bg-gradient-to-r from-[#6B46C1] to-[#9F7AEA] text-sm font-semibold text-white px-7 py-2.5 rounded-full hover:bg-[#FFD66B] hover:text-black transition-colors cursor-pointer w-full mt-2"
+          disabled={loading}
+        >
           {loading ? "Sending..." : "Send Reset Link"}
         </button>
 
-        <p className="text-[13px] text-slate-800 mt-3">
+        <p className="text-[13px] text-gray-800 mt-3">
           Remember your password?{" "}
           <button
-            className="font-medium text-primary underline cursor-pointer"
+            className="font-medium text-[#6B46C1] underline cursor-pointer"
             onClick={() => setCurrentPage("login")}
           >
             Go back to Login

@@ -12,7 +12,6 @@ const CreateSessionForm = () => {
     topicsToFocus: "",
     description: "",
     interviewType: "",
-    
     numberOfQuestions: 10,
     jobDescription: "",
   });
@@ -32,7 +31,14 @@ const CreateSessionForm = () => {
   const handleCreateSession = async (e) => {
     e.preventDefault();
 
-    const { role, experience, topicsToFocus, interviewType, jobDescription, description } = formData;
+    const {
+      role,
+      experience,
+      topicsToFocus,
+      interviewType,
+      jobDescription,
+      description,
+    } = formData;
 
     if (!role || !experience || !topicsToFocus) {
       setError("Please fill all the required fields.");
@@ -43,7 +49,6 @@ const CreateSessionForm = () => {
     setIsLoading(true);
 
     try {
-      // Call AI API to generate questions
       const aiResponse = await axiosInstance.post(
         API_PATHS.AI.GENERATE_QUESTIONS,
         {
@@ -53,12 +58,9 @@ const CreateSessionForm = () => {
           numberOfQuestions: 10,
           interviewType,
           jobDescription,
-          
-          
         }
       );
 
-      // Should be array like [{question, answer}, ...]
       const generatedQuestions = aiResponse.data;
 
       const response = await axiosInstance.post(API_PATHS.SESSION.CREATE, {
@@ -79,12 +81,13 @@ const CreateSessionForm = () => {
       setIsLoading(false);
     }
   };
+
   return (
-    <div className="w-[90vw] md:w-[35vw] p-7 flex flex-col justify-center">
+    <div className="w-[90vw] md:w-[35vw] p-7 flex flex-col justify-center bg-[#EDEBFA] rounded-xl border border-purple-300 ">
       <h3 className="text-lg font-semibold text-black">
         Start a New Interview Journey
       </h3>
-      <p className="text-xs text-slate-700 mt-[5px] mb-3">
+      <p className="text-xs text-gray-700 mt-[5px] mb-3">
         Fill out a few quick details and unlock your personalized set of
         interview questions!
       </p>
@@ -143,18 +146,6 @@ const CreateSessionForm = () => {
           ]}
         />
 
-        {/* <Input
-          value={formData.style}
-          onChange={({ target }) => handleChange("style", target.value)}
-          label="Question Style"
-          type="select"
-          options={[
-            { value: "technical", label: "Technical" },
-            { value: "behavioral", label: "Behavioral" },
-            { value: "mixed", label: "Mixed" },
-          ]}
-        /> */}
-
         <Input
           value={formData.numberOfQuestions}
           onChange={({ target }) =>
@@ -179,7 +170,7 @@ const CreateSessionForm = () => {
 
         <button
           type="submit"
-          className="btn-primary w-full mt-2"
+          className="bg-gradient-to-r from-[#6B46C1] to-[#9F7AEA] text-sm font-semibold text-white px-7 py-2.5 rounded-full hover:bg-[#FFD66B] hover:text-black transition-colors cursor-pointer w-full mt-2"
           disabled={isLoading}
         >
           {isLoading && <SpinnerLoader />} Create Personalized Questions

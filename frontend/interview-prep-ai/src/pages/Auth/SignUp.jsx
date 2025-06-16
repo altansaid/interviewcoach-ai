@@ -13,17 +13,14 @@ const SignUp = ({ setCurrentPage }) => {
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
   const [error, setError] = useState(null);
 
   const { updateUser } = useContext(UserContext);
   const navigate = useNavigate();
 
-  // Handle SignUp Form Submit
   const handleSignUp = async (e) => {
     e.preventDefault();
-
-     let profileImageUrl = "";
+    let profileImageUrl = "";
 
     if (!fullName) {
       setError("Please enter full name.");
@@ -36,15 +33,13 @@ const SignUp = ({ setCurrentPage }) => {
     }
 
     if (!password) {
-      setError("Please enter the password");
+      setError("Please enter the password.");
       return;
     }
 
     setError("");
 
-    //SignUp API Call
     try {
-      // Upload image if present
       if (profilePic) {
         const imgUploadRes = await uploadImage(profilePic);
         profileImageUrl = imgUploadRes.imageUrl || "";
@@ -73,17 +68,17 @@ const SignUp = ({ setCurrentPage }) => {
     }
   };
 
-  return <div className="w-[90vw] md:w-[33vw] p-7 flex flex-col justify-center">
+  return (
+    <div className="w-[90vw] md:w-[33vw] p-7 flex flex-col justify-center bg-[#EDEBFA] rounded-xl border border-purple-300">
       <h3 className="text-lg font-semibold text-black">Create an Account</h3>
-      <p className="text-xs text-slate-700 mt-[5px] mb-6">
+      <p className="text-xs text-gray-700 mt-1 mb-6">
         Join us today by entering your details below.
       </p>
 
       <form onSubmit={handleSignUp}>
-
         <ProfilePhotoSelector image={profilePic} setImage={setProfilePic} />
 
-        <div className="grid grid-cols-1 md:grid-cols-1 gap-2">
+        <div className="grid gap-3 mb-2">
           <Input
             value={fullName}
             onChange={({ target }) => setFullName(target.value)}
@@ -111,23 +106,25 @@ const SignUp = ({ setCurrentPage }) => {
 
         {error && <p className="text-red-500 text-xs pb-2.5">{error}</p>}
 
-        <button type="submit" className="btn-primary">
+        <button
+          type="submit"
+          className="bg-gradient-to-r from-[#6B46C1] to-[#9F7AEA] text-sm font-semibold text-white px-7 py-2.5 rounded-full hover:bg-[#FFD66B] hover:text-black transition-colors cursor-pointer w-full"
+        >
           SIGN UP
         </button>
 
-        <p className="text-[13px] text-slate-800 mt-3">
-          Already an account?{" "}
+        <p className="text-[13px] text-gray-800 mt-3">
+          Already have an account?{" "}
           <button
-            className="font-medium text-primary underline cursor-pointer"
-            onClick={() => {
-              setCurrentPage("login");
-            }}
+            className="font-medium text-[#6B46C1] underline cursor-pointer"
+            onClick={() => setCurrentPage("login")}
           >
             Login
           </button>
         </p>
       </form>
     </div>
+  );
 };
 
 export default SignUp;

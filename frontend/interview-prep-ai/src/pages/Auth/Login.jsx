@@ -6,7 +6,6 @@ import axiosInstance from "../../utils/axiosInstance";
 import { API_PATHS } from "../../utils/apiPaths";
 import { UserContext } from "../../context/userContext";
 import { GoogleLogin } from "@react-oauth/google";
-import { jwtDecode } from "jwt-decode";
 
 const Login = ({ setCurrentPage }) => {
   const [email, setEmail] = useState("");
@@ -14,10 +13,8 @@ const Login = ({ setCurrentPage }) => {
   const [error, setError] = useState(null);
 
   const { updateUser } = useContext(UserContext);
-
   const navigate = useNavigate();
 
-  // Handle Login Form Submit
   const handleLogin = async (e) => {
     e.preventDefault();
 
@@ -33,7 +30,6 @@ const Login = ({ setCurrentPage }) => {
 
     setError("");
 
-    //Login API Call
     try {
       const response = await axiosInstance.post(API_PATHS.AUTH.LOGIN, {
         email,
@@ -57,9 +53,9 @@ const Login = ({ setCurrentPage }) => {
   };
 
   return (
-    <div className="w-[90vw] md:w-[33vw] p-7 flex flex-col justify-center">
+    <div className="w-[90vw] md:w-[33vw] p-7 flex flex-col justify-center bg-[#EDEBFA] rounded-xl border border-purple-300">
       <h3 className="text-lg font-semibold text-black">Welcome Back</h3>
-      <p className="text-xs text-slate-700 mt-[5px] mb-6">
+      <p className="text-xs text-gray-700 mt-1 mb-6">
         Please enter your details to log in
       </p>
 
@@ -86,10 +82,11 @@ const Login = ({ setCurrentPage }) => {
           shape="pill"
         />
         <div className="flex items-center my-4">
-          <span className="flex-grow border-t" />
-          <span className="mx-2 text-xs text-slate-500">or</span>
-          <span className="flex-grow border-t" />
+          <span className="flex-grow border-t border-gray-300" />
+          <span className="mx-2 text-xs text-gray-500">or</span>
+          <span className="flex-grow border-t border-gray-300" />
         </div>
+
         <Input
           value={email}
           onChange={({ target }) => setEmail(target.value)}
@@ -105,8 +102,9 @@ const Login = ({ setCurrentPage }) => {
           placeholder="Min 8 Characters"
           type="password"
         />
+
         <p
-          className="text-[13px] text-primary underline cursor-pointer mt-2 mb-4"
+          className="text-[13px] text-[#6B46C1] underline cursor-pointer mt-2 mb-4"
           onClick={() => setCurrentPage("forgotPassword")}
         >
           Forgot your password?
@@ -114,17 +112,18 @@ const Login = ({ setCurrentPage }) => {
 
         {error && <p className="text-red-500 text-xs pb-2.5">{error}</p>}
 
-        <button type="submit" className="btn-primary">
+        <button
+          type="submit"
+          className="bg-gradient-to-r from-[#6B46C1] to-[#9F7AEA] text-sm font-semibold text-white px-7 py-2.5 rounded-full hover:bg-[#FFD66B] hover:text-black transition-colors cursor-pointer w-full"
+        >
           LOGIN
         </button>
 
-        <p className="text-[13px] text-slate-800 mt-3">
+        <p className="text-[13px] text-gray-800 mt-3">
           Don’t have an account?{" "}
           <button
-            className="font-medium text-primary underline cursor-pointer"
-            onClick={() => {
-              setCurrentPage("signup");
-            }}
+            className="font-medium text-[#6B46C1] underline cursor-pointer"
+            onClick={() => setCurrentPage("signup")}
           >
             SignUp
           </button>

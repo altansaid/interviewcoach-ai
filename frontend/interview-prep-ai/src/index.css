@@ -4,7 +4,7 @@
 @theme {
   --font-display: "Urbanist", sans-serif;
   --breakpoint-3xl: 1920px;
-  --color-primary: #FF9324;
+  --color-primary: #9F7AEA; /* yeni ana mor tonu */
 }
 
 @layer base {
@@ -13,7 +13,8 @@
   }
 
   body {
-    background-color: #fcfbfc;
+    background-color: #0E0E1A; /* uzay teması arka plan */
+    color: #FFFFFF;
     overflow-x: hidden;
   }
 }
@@ -24,7 +25,7 @@
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
-  background-color: rgba(100, 100, 100, 0.4);
+  background-color: rgba(159, 122, 234, 0.5); /* mor tonu */
   border-radius: 10px;
 }
 
@@ -45,8 +46,20 @@
 
   .animate-text-shine {
     animation: text-shine 3s ease-in-out infinite alternate;
+    background-size: 200% 200%;
+    background-image: linear-gradient(
+      to right,
+      #9F7AEA,
+      #805AD5,
+      #B794F4,
+      #805AD5,
+      #9F7AEA
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
-  
+
+  /* Blob animations */
   @keyframes blob1 {
     0%, 100% { transform: translate(0px, 0px) scale(1); }
     33% { transform: translate(30px, -60px) scale(1.1); }
@@ -78,14 +91,15 @@
   }
 }
 
+/* Utility Components */
 .input-box {
-  @apply w-full flex justify-between gap-3 text-sm text-black bg-gray-50/50 rounded px-4 py-3 mb-4 mt-3 border border-gray-100 outline-none focus-within:border-orange-300;
+  @apply w-full flex justify-between gap-3 text-sm text-black bg-gray-50/50 rounded px-4 py-3 mb-4 mt-3 border border-gray-100 outline-none focus-within:border-purple-300;
 }
 
 .btn-primary {
-  @apply w-full flex items-center justify-center gap-3 text-sm font-medium text-white bg-black shadow-lg shadow-orange-600/5 p-[10px] rounded-md my-1 hover:bg-orange-600/15 hover:text-black cursor-pointer;
+  @apply w-full flex items-center justify-center gap-3 text-sm font-medium text-white bg-gradient-to-r from-purple-600 to-purple-400 shadow-lg p-[10px] rounded-md my-1 hover:bg-white hover:text-purple-700 hover:shadow-purple-300 transition-colors cursor-pointer;
 }
 
 .btn-small {
-  @apply flex items-center justify-center gap-3 bg-linear-to-r from-[#FF9324] to-[#e99a4b] text-sm font-semibold text-white px-7 py-2 rounded-lg hover:bg-black hover:text-white transition-colors cursor-pointer hover:shadow-2xl hover:shadow-orange-300
+  @apply flex items-center justify-center gap-3 bg-gradient-to-r from-purple-600 to-purple-400 text-sm font-semibold text-white px-7 py-2 rounded-lg hover:bg-white hover:text-purple-700 transition-colors cursor-pointer hover:shadow-2xl hover:shadow-purple-300;
 }

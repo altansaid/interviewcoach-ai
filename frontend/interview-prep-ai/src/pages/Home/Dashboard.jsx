@@ -35,12 +35,8 @@ const Dashboard = () => {
   const deleteSession = async (sessionData) => {
     try {
       await axiosInstance.delete(API_PATHS.SESSION.DELETE(sessionData?._id));
-
       toast.success("Session Deleted Successfully");
-      setOpenDeleteAlert({
-        open: false,
-        data: null,
-      });
+      setOpenDeleteAlert({ open: false, data: null });
       fetchAllSessions();
     } catch (error) {
       console.error("Error deleting session data:", error);
@@ -50,6 +46,7 @@ const Dashboard = () => {
   useEffect(() => {
     fetchAllSessions();
   }, []);
+
   return (
     <DashboardLayout>
       <div className="container mx-auto pt-4 pb-4">
@@ -75,10 +72,10 @@ const Dashboard = () => {
         </div>
 
         <button
-          className="h-12 md:h-12 flex items-center justify-center gap-3 bg-linear-to-r from-[#FF9324] to-[#e99a4b] text-sm font-semibold text-white px-7 py-2.5 rounded-full hover:bg-black hover:text-white transition-colors cursor-pointer hover:shadow-2xl hover:shadow-orange-300 fixed bottom-10 md:bottom-20 right-10 md:right-20"
+          className="h-12 md:h-12 flex items-center justify-center gap-3 bg-gradient-to-r from-[#6B46C1] to-[#9F7AEA] text-sm font-semibold text-white px-7 py-2.5 rounded-full hover:bg-[#FFD66B] hover:text-black transition-colors cursor-pointer hover:shadow-lg hover:shadow-purple-300 fixed bottom-10 md:bottom-20 right-10 md:right-20"
           onClick={() => setOpenCreateModal(true)}
         >
-          <LuPlus className="text-2xl text-white" />
+          <LuPlus className="text-2xl" />
           Add New
         </button>
       </div>
