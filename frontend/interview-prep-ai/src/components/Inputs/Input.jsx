@@ -11,7 +11,7 @@ const Input = ({ value, onChange, label, placeholder, type, options = [] }) => {
   return (
     <div className="mb-4">
       {label && (
-        <label className="block text-[13px] text-slate-800 mb-1">{label}</label>
+        <label className="block text-sm text-slate-800 mb-1">{label}</label>
       )}
 
       <div className="relative">
@@ -19,7 +19,7 @@ const Input = ({ value, onChange, label, placeholder, type, options = [] }) => {
           <select
             value={value}
             onChange={onChange}
-            className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-yellow-300 bg-white text-sm"
+            className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-yellow-300 bg-white text-base"
           >
             <option value="" disabled>
               {placeholder || "Select an option"}
@@ -38,7 +38,7 @@ const Input = ({ value, onChange, label, placeholder, type, options = [] }) => {
             placeholder={placeholder}
             value={value}
             onChange={onChange}
-            className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-yellow-300 text-sm pr-10"
+            className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-yellow-300 text-base pr-10"
           />
         )}
 

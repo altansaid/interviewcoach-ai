@@ -4,7 +4,7 @@ const Modal = ({ children, isOpen, onClose, title, hideHeader }) => {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/20 backdrop-blur-sm  w-full h-full">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/20 backdrop-blur-sm  w-full h-full overscroll-contain">
       {/* Modal Content */}
       <div className="relative flex flex-col bg-[#151322] text-black shadow-2xl shadow-purple-500/30 rounded-xl max-h-[80vh]">
         {/* Modal Header */}
