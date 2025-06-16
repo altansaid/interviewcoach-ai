@@ -16,15 +16,10 @@
     background-color: #0E0E1A; /* uzay teması arka plan */
     color: #FFFFFF;
     overflow-x: hidden;
-    touch-action: manipulation;
   }
 }
 
 /* Custom scrollbar styling */
-.custom-scrollbar {
-  -webkit-overflow-scrolling: touch; /* iOS smooth scroll */
-}
-
 
 .custom-scrollbar::-webkit-scrollbar {
   width: 4px;
@@ -40,10 +35,6 @@
 }
 
 @layer utilities {
-  .max-h-screen-dynamic {
-    max-height: 100dvh;
-  }
-
   /* Animate text with a shine effect */
   @keyframes text-shine {
     0% {
