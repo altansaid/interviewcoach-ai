@@ -13,7 +13,7 @@ const RoleInfoHeader = ({
 
   return (
     <div className="relative bg-[#1A1A2E] text-white overflow-hidden">
-      <div className="container mx-auto px-6 px-4 py-10 relative z-10">
+      <div className="container mx-auto px-4  py-10 relative z-10">
         <div className="flex flex-col gap-6">
           <div className="flex justify-between items-start">
             <button
