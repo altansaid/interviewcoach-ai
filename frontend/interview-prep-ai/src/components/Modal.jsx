@@ -1,7 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 const Modal = ({ children, isOpen, onClose, title, hideHeader }) => {
   if (!isOpen) return null;
+
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, []);
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/20 backdrop-blur-sm  w-full h-full">
